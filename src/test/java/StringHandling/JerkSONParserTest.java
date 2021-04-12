@@ -31,4 +31,49 @@ public class JerkSONParserTest {
     @Test
     public void setJerkSONData() {
     }
+
+    @Test
+    public void getJerkSONData() {
+        String returned = testJerkSONParser.getJerkSONData();
+        System.out.println(returned);
+    }
+
+    @Test
+    public void convertLowerCase() {
+        String returned = testJerkSONParser.convertLowerCase(jerkSONText);
+        System.out.println(returned);
+    }
+
+    @Test
+    public void removeWhiteSpace() {
+        String returned = testJerkSONParser.removeWhiteSpace(jerkSONText);
+        String returned2 = testJerkSONParser.getJerkSONData();
+        System.out.println(returned);
+        System.out.println(returned2);
+    }
+
+    @Test
+    public void replaceSpecChars() {
+        String returned = testJerkSONParser.replaceSpecChars(jerkSONText);
+        System.out.println(returned);
+    }
+
+    @Test
+    public void getCount() {
+        String input = "milk:milk:cookies:food";
+        int expected = 2;
+        int returned = testJerkSONParser.getCount(input, "milk");
+        System.out.println(returned);
+
+    }
+
+    @Test
+    public void countErrors() {
+    }
+
+    @Test
+    public void cleanString() {
+        String returned = testJerkSONParser.cleanString();
+        System.out.println(returned);
+    }
 }

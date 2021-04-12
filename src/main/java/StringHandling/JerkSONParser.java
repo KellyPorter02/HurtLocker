@@ -11,8 +11,10 @@ public class JerkSONParser {
 
     private String jerkSONData;
     private FoodJSONReader jerkSONReader;
+    private String finalCleanedString;
     public Pattern pattern;
     public Matcher matcher;
+
 
     public JerkSONParser() {
         jerkSONReader = new FoodJSONReader();
@@ -27,30 +29,51 @@ public class JerkSONParser {
         jerkSONData = input;
     }
 
+    public String getFinalCleanedString() {
+        return finalCleanedString;
+    }
+
+    public void setFinalCleanedString(String input) {
+        this.finalCleanedString = finalCleanedString;
+    }
+
+    public String cleanString() {
+        jerkSONData = convertLowerCase(this.jerkSONData);
+        jerkSONData = removeWhiteSpace(this.jerkSONData);
+        jerkSONData = replaceSpecChars(this.jerkSONData);
+        this.finalCleanedString = jerkSONData;
+        return finalCleanedString;
+    }
+
     public String convertLowerCase(String input) {
-        pattern = Pattern.compile("", Pattern.CASE_INSENSITIVE);
-        matcher = pattern.matcher(input);
-        boolean matchFound = matcher.find();
-        String leonPoem = jerkSONData;
-        if (matchFound) {
-            leonPoem = matcher.replaceAll("Leon");
-        }
-        return leonPoem;
+        this.jerkSONData = input.toLowerCase();
+        return input.toLowerCase();
+
     }
 
     public String removeWhiteSpace(String input) {
         pattern = Pattern.compile("[\\s]");
         matcher = pattern.matcher(input);
-        return matcher.replaceAll("");
+        String noWhiteSpace = matcher.replaceAll("");
+        this.jerkSONData = noWhiteSpace;
+        return noWhiteSpace;
     }
 
     public String replaceSpecChars(String input) {
-        pattern = Pattern.compile("[@^*!]");
+        pattern = Pattern.compile("[@^*!%]");
         matcher = pattern.matcher(input);
         return matcher.replaceAll(";");
     }
 
-    public
+    public int getCount(String input, String subStringToCount) {
+        int count = 0;
+        pattern = Pattern.compile(subStringToCount);
+        matcher = pattern.matcher(input);
+        while (matcher.find()) {
+            count++;
+        }
+        return count;
+    }
 
     public int countErrors(String input) throws KeyHasNoValueException {
         int numErrors = 0;
