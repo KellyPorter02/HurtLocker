@@ -28,4 +28,7 @@ public class JerkSONParserTest {
         Assert.assertEquals(expected, returned);
     }
 
+    @Test
+    public void setJerkSONData() {
+    }
 }
