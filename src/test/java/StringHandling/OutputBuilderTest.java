@@ -1,5 +1,6 @@
 package StringHandling;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -27,12 +28,31 @@ public class OutputBuilderTest {
     }
 
     @Test
-    public void getInput() {
-        System.out.println(testOutputBuilder.getCleanedString());
-
-    }
-
-    @Test
     public void buildString() {
+        String expected = "name:      Milk               seen:  8  times\n" +
+                "===============               ===============\n" +
+                "Price:     3.23               seen:  7  times\n" +
+                "---------------               ---------------\n" +
+                "Price:     1.23               seen:  1  times\n" +
+                "\n" +
+                "name:     Bread               seen:  6  times\n" +
+                "===============               ===============\n" +
+                "Price:     1.23               seen:  6  times\n" +
+                "---------------               ---------------\n" +
+                "\n" +
+                "name:   Cookies               seen:  7  times\n" +
+                "===============               ===============\n" +
+                "Price:     2.25               seen:  10 times\n" +
+                "---------------               ---------------\n" +
+                "\n" +
+                "name:    Apples               seen:  4  times\n" +
+                "===============               ===============\n" +
+                "Price:     0.25               seen:  2  times\n" +
+                "---------------               ---------------\n" +
+                "Price:     0.23               seen:  2  times\n" +
+                "\n" +
+                "Errors                        seen:  4  times\n";
+        String returned = testOutputBuilder.buildString();
+        Assert.assertEquals(expected, returned);
     }
 }

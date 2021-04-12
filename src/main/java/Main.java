@@ -13,5 +13,8 @@ public class Main {
         String output = (new Main()).readRawDataToString();
         System.out.println(output);
 
+        AppRunner runner = new AppRunner();
+        runner.run();
+
     }
 }
