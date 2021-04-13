@@ -20,26 +20,11 @@ public class JerkSONParser {
         this.jerkSONData = jerkSONReader.getFoodJSONData();
     }
 
-    public String getJerkSONData() {
-        return jerkSONData;
-    }
-
-    public void setJerkSONData(String input) {
-        jerkSONData = input;
-    }
-
-    public String getFinalCleanedString() {
-        return finalCleanedString;
-    }
-
-    public void setFinalCleanedString(String input) {
-        this.finalCleanedString = input;
-    }
-
     public String cleanString() {
         jerkSONData = convertLowerCase(this.jerkSONData);
         jerkSONData = removeWhiteSpace(this.jerkSONData);
         jerkSONData = replaceSpecChars(this.jerkSONData);
+        jerkSONData = replaceZeros(this.jerkSONData);
         this.finalCleanedString = jerkSONData;
         return finalCleanedString;
     }
@@ -71,6 +56,13 @@ public class JerkSONParser {
         return matcher.replaceAll(";");
     }
 
+    public String replaceZeros(String input) {
+        pattern = Pattern.compile("[o0][o0]k");
+        matcher = pattern.matcher(input);
+        return matcher.replaceAll("ook");
+    }
+
+
     public int getCount(String input, String subStringToCount) {
         int count = 0;
         pattern = Pattern.compile(subStringToCount);
@@ -79,6 +71,22 @@ public class JerkSONParser {
             count++;
         }
         return count;
+    }
+
+    public String getJerkSONData() {
+        return jerkSONData;
+    }
+
+    public void setJerkSONData(String input) {
+        jerkSONData = input;
+    }
+
+    public String getFinalCleanedString() {
+        return finalCleanedString;
+    }
+
+    public void setFinalCleanedString(String input) {
+        this.finalCleanedString = input;
     }
 
 }

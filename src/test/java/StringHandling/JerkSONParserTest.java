@@ -96,4 +96,10 @@ public class JerkSONParserTest {
     }
 
 
+    @Test
+    public void replaceZeros() {
+        String given = "co0kiec0okie";
+        String returned = testJerkSONParser.replaceZeros(given);
+        System.out.println(returned);
+    }
 }
