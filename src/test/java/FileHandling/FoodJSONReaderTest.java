@@ -4,16 +4,16 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class FileReaderTest {
+import static org.junit.Assert.*;
 
-    private String foodJSONText;
+public class FoodJSONReaderTest {
+
+
     private FoodJSONReader testReader;
 
     @Before
     public void setUp() throws Exception {
         testReader = new FoodJSONReader();
-        foodJSONText = testReader.getFoodJSONData();
-
     }
 
     @Test
@@ -25,4 +25,5 @@ public class FileReaderTest {
         // assert
         Assert.assertEquals(expected, returned);
     }
+
 }

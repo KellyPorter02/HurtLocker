@@ -1,9 +1,8 @@
 package StringHandling;
 
-import Exceptions.KeyHasNoValueException;
-import Exceptions.StringValidation;
 import FileHandling.FoodJSONReader;
 
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,7 +33,7 @@ public class JerkSONParser {
     }
 
     public void setFinalCleanedString(String input) {
-        this.finalCleanedString = finalCleanedString;
+        this.finalCleanedString = input;
     }
 
     public String cleanString() {
@@ -46,9 +45,16 @@ public class JerkSONParser {
     }
 
     public String convertLowerCase(String input) {
-        this.jerkSONData = input.toLowerCase();
-        return input.toLowerCase();
-
+        Matcher m = Pattern.compile("\\b\\w{1,}\\b").matcher(input);
+        StringBuilder sb = new StringBuilder();
+        int last = 0;
+        while (m.find()) {
+            sb.append(input.substring(last, m.start()));
+            sb.append(m.group(0).toLowerCase());
+            last = m.end();
+        }
+        sb.append(input.substring(last));
+        return sb.toString();
     }
 
     public String removeWhiteSpace(String input) {
@@ -75,39 +81,6 @@ public class JerkSONParser {
         return count;
     }
 
-    public int countErrors(String input) throws KeyHasNoValueException {
-        int numErrors = 0;
-        try {
-            StringValidation.validateKeyHasValue(input);
-            pattern = Pattern.compile(":;");
-            matcher = pattern.matcher(input);
-            while (matcher.find()) {
-                numErrors++;
-            }
-        } catch (KeyHasNoValueException e) {
-            e.getMessage();
-            e.printStackTrace();
-            // logging and handling the situation
-        }
-        return numErrors;
-    }
-
-
 }
 
-/*
-    try{
-            Pattern pattern = Pattern.compile(REGEX);
 
-            // get a matcher object
-            Matcher matcher = pattern.matcher(INPUT);
-            INPUT = matcher.replaceAll(REPLACE);
-        } catch(PatternSyntaxException e){
-            System.out.println("PatternSyntaxException: ");
-            System.out.println("Description: "+ e.getDescription());
-            System.out.println("Index: "+ e.getIndex());
-            System.out.println("Message: "+ e.getMessage());
-            System.out.println("Pattern: "+ e.getPattern());
-        }
-    }
- */

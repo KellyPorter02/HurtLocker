@@ -2,6 +2,7 @@ package FileHandling;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class FoodJSONReader {
@@ -14,8 +15,8 @@ public class FoodJSONReader {
 
     private String loadFile(){
         ClassLoader classLoader = getClass().getClassLoader();
-        File file = new File(classLoader.getResource("RawData.txt").getFile());
-        StringBuilder result = new StringBuilder("");
+        File file = new File(Objects.requireNonNull(classLoader.getResource("RawData.txt")).getFile());
+        StringBuilder result = new StringBuilder();
 
         try(Scanner scanner = new Scanner(file)){
             while(scanner.hasNextLine()){
@@ -23,7 +24,6 @@ public class FoodJSONReader {
                 result.append(line).append("\n");
             }
 
-            scanner.close();
         }catch(IOException e){
             e.printStackTrace();
         }

@@ -1,4 +1,3 @@
-import Exceptions.KeyHasNoValueException;
 import FileHandling.FoodFileWriter;
 import FileHandling.FoodJSONReader;
 import StringHandling.JerkSONParser;
@@ -16,7 +15,7 @@ public class AppRunner implements Runnable {
         JerkSONParser parser = new JerkSONParser();
         parser.cleanString();
         OutputBuilder opb = new OutputBuilder();
-        String textToWriteOut = opb.buildString();
+        opb.buildString();
         FoodFileWriter writeOut = new FoodFileWriter();
         try {
             writeOut.writeOutputStringToFile();
