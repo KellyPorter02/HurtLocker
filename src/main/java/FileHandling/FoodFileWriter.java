@@ -21,8 +21,8 @@ public class FoodFileWriter {
     }
 
 
-    public void writeOutputStringToFile() throws IOException {
-
+    public boolean writeOutputStringToFile() throws IOException {
+        boolean completed = false;
         try {
             String fileContent = outputBuilder.buildString();
 
@@ -38,13 +38,12 @@ public class FoodFileWriter {
 
             stream.close();
             channel.close();
+            completed = true;
         } catch (IOException e) {
             e.getMessage();
             e.printStackTrace();
+            completed = false;
         }
-
-
+        return completed;
     }
-
-
 }

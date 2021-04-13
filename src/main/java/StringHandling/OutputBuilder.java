@@ -32,7 +32,7 @@ public class OutputBuilder {
         sb.append("\n");
         sb.append("name:   Cookies               seen:  "+ jerkSONParser.getCount(cleanedString, "cookies") +"  times\n");
         sb.append("===============               ===============\n");
-        sb.append("Price:     2.25               seen:  "+ jerkSONParser.getCount(cleanedString, "2.25") +" times\n");
+        sb.append("Price:     2.25               seen:  "+ jerkSONParser.getCount(cleanedString, "cookies;price:2.25") +"  times\n");
         sb.append("---------------               ---------------\n");
         sb.append("\n");
         sb.append("name:    Apples               seen:  "+ jerkSONParser.getCount(cleanedString, "apples") +"  times\n");
