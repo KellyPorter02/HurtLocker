@@ -19,7 +19,7 @@ public class OutputBuilder {
     public String buildString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("name:      Milk               seen:  "+ jerkSONParser.getCount(cleanedString, "milk;price") +"  times\n");
+        sb.append("name:      Milk               seen:  "+ jerkSONParser.getCount(cleanedString, "(milk;price:.\\.23)") +"  times\n");
         sb.append("===============               ===============\n");
         sb.append("Price:     3.23               seen:  "+ jerkSONParser.getCount(cleanedString, "milk;price:3.23") +"  times\n");
         sb.append("---------------               ---------------\n");
